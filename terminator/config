@@ -1,0 +1,57 @@
+[global_config]
+  always_split_with_profile = True
+  borderless = True
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 39253f3c-55eb-4b02-90d3-18abcd8ca9d5
+      last_active_window = False
+      maximised = False
+      order = 0
+      parent = ""
+      position = 20:20
+      size = 930, 1040
+      type = Window
+    [[[terminal1]]]
+      order = 0
+      parent = child0
+      profile = ArchProfile
+      type = Terminal
+      uuid = 39253f3c-55eb-4b02-90d3-18abcd8ca9d5
+  [[BaseLayout]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 39253f3c-55eb-4b02-90d3-18abcd8ca9d5
+      last_active_window = False
+      maximised = False
+      order = 0
+      parent = ""
+      position = 20:80
+      size = 930, 980
+      title = adonis@tomberry: ~
+      type = Window
+    [[[terminal1]]]
+      order = 0
+      parent = child0
+      profile = ArchProfile
+      type = Terminal
+      uuid = 39253f3c-55eb-4b02-90d3-18abcd8ca9d5
+[plugins]
+[profiles]
+  [[default]]
+    cursor_color = "#aaaaaa"
+    font = Source Code Pro Medium 20
+    show_titlebar = False
+    use_system_font = False
+  [[ArchProfile]]
+    show_titlebar = False
+    background_darkness = 0.83
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Ubuntu Mono 30
+    scroll_on_output = True
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    use_system_font = False
