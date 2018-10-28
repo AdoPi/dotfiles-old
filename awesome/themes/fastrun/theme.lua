@@ -135,25 +135,25 @@ end
 -- Tag names
 -- Symbols:           
 local symb = "  "
-theme.tagnames = { symb, symb, symb, symb, symb, symb, symb, symb, symb, symb }
+--theme.tagnames = { symb, symb, symb, symb, symb, symb, symb, symb, symb, symb }
 -- Substitutes:   
 -- Nature:         
 --theme.tagnames = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  " }
---theme.tagnames = { " i ", " ii ", " iii ", " iv ", " v ", " vi ", " vii ", " viii ", " ix ", " x " }
+theme.tagnames = { " i ", " ii ", " iii ", " iv ", " v ", " vi ", " vii ", " viii ", " ix ", " x " }
 
 -- Widget separator
 --theme.separator_text = " / "
 --theme.separator_text = " / "
 --theme.separator_text = " ) ( "
 --theme.separator_text = "  "
---theme.separator_text = " | "
+theme.separator_text = " | "
 --theme.separator_text = " "
 --theme.separator_text = " :: "
 --theme.separator_text = " ⠐ "
 --theme.separator_text = " • "
 --theme.separator_text = " •• "
 --theme.separator_text = "  "
-theme.separator_text = "  "
+--theme.separator_text = "  "
 theme.separator_fg = xcolor8
 
 -- Wibar

@@ -730,7 +730,8 @@ end
 -- Mouse buttons on the client (whole window, not just titlebar)
 keys.clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
-    awful.button({ modkey }, 1, awful.mouse.client.move),
+--    awful.button({ modkey }, 1, awful.mouse.client.move),
+    awful.button({ modkey }, 1, function(c) awful.mouse.client.move(c); c.floating = true end),
     awful.button({ modkey }, 3, function(c)
         awful.mouse.resize(c, nil, {jump_to_corner=true})
     end)
