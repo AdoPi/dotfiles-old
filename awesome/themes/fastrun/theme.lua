@@ -26,7 +26,13 @@ local awful = require("awful")
 local screen_width = awful.screen.focused().geometry.width
 local screen_height = awful.screen.focused().geometry.height
 
-theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/wall.png"
+theme.wallpaper = function(s)
+    if s.index == 1 then
+        return os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/wall.png";
+    else 
+        return os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/wall2.jpg";
+    end
+end
 theme.font          = "monospace 12"
 --theme.font          = "sans-serif 12"
 
@@ -139,19 +145,21 @@ local symb = "  "
 -- Substitutes:   
 -- Nature:         
 --theme.tagnames = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  " }
-theme.tagnames = { " i ", " ii ", " iii ", " iv ", " v ", " vi ", " vii ", " viii ", " ix ", " x " }
+--theme.tagnames = { " i ", " ii ", " iii ", " iv ", " v ", " vi ", " vii ", " viii ", " ix ", " x " }
+--theme.tagnames = { " i ", " ii ", " iii ", " iv ", " v ", " vi ", " vii ", " viii ", " ix ", " x " }
+theme.tagnames = { " クラウド ", " ソラ ", " ティーダ ", " モーグリ ", " リク ", " vi ", " vii ", " viii ", " ix ", " x " }
 
 -- Widget separator
 --theme.separator_text = " / "
 --theme.separator_text = " / "
 --theme.separator_text = " ) ( "
 --theme.separator_text = "  "
-theme.separator_text = " | "
+--theme.separator_text = " | "
 --theme.separator_text = " "
 --theme.separator_text = " :: "
 --theme.separator_text = " ⠐ "
 --theme.separator_text = " • "
---theme.separator_text = " •• "
+theme.separator_text = " •• "
 --theme.separator_text = "  "
 --theme.separator_text = "  "
 theme.separator_fg = xcolor8
@@ -161,21 +169,25 @@ theme.separator_fg = xcolor8
 theme.wibar_position = "bottom"
 theme.wibar_detached = true
 theme.wibar_height = dpi(40)
+theme.wibar_width = 885
 theme.wibar_fg = xcolor0
 theme.wibar_bg = xcolor7
---theme.wibar_opacity = 0.7
 theme.wibar_border_color = xcolor0
 theme.wibar_border_width = 0
-theme.wibar_border_radius = theme.border_radius
+theme.wibar_border_radius = 0 --theme.border_radius
+theme.screen_wibar_width = function(s) return s.geometry.width end
+theme.screen_wibar_height = function(s) return theme.wibar_height end
+theme.wibar_opacity = 0.89
+theme.wibar_detached = false
+
 --theme.wibar_width = screen_width - theme.screen_margin * 4 -theme.wibar_border_width * 2
-theme.wibar_width = 885
 --theme.wibar_x = screen_width / 2 - theme.wibar_width - theme.screen_margin * 2
 --theme.wibar_x = theme.screen_margin * 2
 --theme.wibar_x = screen_width - theme.wibar_width - theme.wibar_border_width * 2 - theme.screen_margin * 2
 --theme.wibar_y = theme.screen_margin * 2
 
 -- Another wibar (optional)
-theme.wibar_alt_enabled = true
+theme.wibar_alt_enabled = false
 --theme.wibar_alt_position = "bottom"
 theme.wibar_alt_position = "left" --fake position so it does not increase screen margin
 theme.wibar_alt_detached = false

@@ -25,7 +25,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 date_prefix = wibox.widget.textbox(" ")
 date_prefix.markup = helpers.colorize_text(date_prefix.text, beautiful.prefix_fg)
 mytextdate = wibox.widget.textclock("%a %d %B")
---mytextdate = wibox.widget.textclock("%j days around the sun") --HAHA very useful
 -- Create a textclock widget
 clock_prefix = wibox.widget.textbox(" ")
 clock_prefix.markup = helpers.colorize_text(clock_prefix.text, beautiful.prefix_fg)
@@ -99,7 +98,11 @@ awful.screen.connect_for_each_screen(function(s)
                awful.button({ }, 4, function () awful.layout.inc( 1) end),
                awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+    if s.index == 1 then
+	    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+    else
+	    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.noempty, taglist_buttons)
+    end
     s.mytaglist.font = beautiful.font
 
     -- Create a tasklist widget
@@ -125,7 +128,7 @@ awful.screen.connect_for_each_screen(function(s)
         --s.useless_wibar:buttons(keys.desktopbuttons)
     end
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = beautiful.wibar_position, screen = s, width = beautiful.wibar_width, height = beautiful.wibar_height, shape = helpers.rrect(beautiful.wibar_border_radius)})
+    s.mywibox = awful.wibar({ position = beautiful.wibar_position, screen = s, width = beautiful.screen_wibar_width(s), height = beautiful.screen_wibar_height(s), shape = helpers.rrect(beautiful.wibar_border_radius), opacity = beautiful.wibar_opacity})
     -- Wibar items
     -- Add or remove widgets here
     s.mywibox:setup {

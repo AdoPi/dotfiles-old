@@ -482,7 +482,7 @@ keys.globalkeys = gears.table.join(
     -- Spawn htop in a terminal
     awful.key({ modkey }, "p", function() awful.spawn(terminal .. " -e htop") end,
               {description = "htop", group = "launcher"})
-	      )
+)
 
 
 keys.clientkeys = gears.table.join(
@@ -652,13 +652,40 @@ keys.clientkeys = gears.table.join(
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 local ntags = 10
+
+-- Dual screen helpers
+function getscreentag(tag)
+	return math.floor(tag/5) + 1
+end
+
+function screentagindex(i)
+	local k = 1
+	if screen:count() > 1 then
+		if i > 5 then
+			k = i - 5
+		else
+			k = i
+		end
+	else
+		k = i
+	end
+
+	return k
+end
+
 for i = 1, ntags do
     keys.globalkeys = gears.table.join(keys.globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
-                        local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
+		      -- Choose screen according to the #tab
+
+		        local k = screentagindex(i)
+			awful.screen.focus(getscreentag(i))
+
+			-- TODO(AdoPi) is it a better workflow to not focus the screen?
+			local screen = awful.screen.focused()
+                        local tag = screen.tags[k]
                         local current_tag = screen.selected_tag
                         -- Tag back and forth:
                         -- If you try to focus the same tag you are at,
@@ -682,10 +709,13 @@ for i = 1, ntags do
         -- Toggle tag display.
         awful.key({ modkey, ctrlkey }, "#" .. i + 9,
                   function ()
-                      local screen = awful.screen.focused()
-                      local tag = screen.tags[i]
+		      local k = screentagindex(i)
+                      local stmp = awful.screen.focused()
+		      awful.screen.focus(getscreentag(i))
+                      local tag = awful.screen.focused().tags[k]
                       if tag then
                          awful.tag.viewtoggle(tag)
+			 awful.screen.focus(stmp)
                       end
                   end,
                   {description = "toggle tag #" .. i, group = "tag"}),
@@ -693,9 +723,13 @@ for i = 1, ntags do
         awful.key({ modkey, shiftkey }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = client.focus.screen.tags[i]
+			 local k = screentagindex(i)
+                         local stmp = client.focus.screen
+			 awful.screen.focus(getscreentag(i))
+		 	 local tag = awful.screen.focused().tags[k]
                           if tag then
                               client.focus:move_to_tag(tag)
+			      awful.screen.focus(stmp)
                           end
                      end
                   end,
@@ -703,7 +737,10 @@ for i = 1, ntags do
         -- Move all visible clients to tag and focus that tag
         awful.key({ modkey, altkey }, "#" .. i + 9,
                   function ()
-                    local tag = client.focus.screen.tags[i]
+		    --TODO
+                    local tag = awful.screen[getscreentag(i)].tags[k]
+		    --client.focus.screen.tags[k]
+
                     local clients = awful.screen.focused().clients
                     if tag then
                         for _, c in pairs(clients) do
@@ -716,8 +753,9 @@ for i = 1, ntags do
         -- Toggle tag on focused client.
         awful.key({ modkey, ctrlkey, shiftkey }, "#" .. i + 9,
                   function ()
+		  --TODO
                       if client.focus then
-                          local tag = client.focus.screen.tags[i]
+                          local tag = client.focus.screen.tags[k]
                           if tag then
                               client.focus:toggle_tag(tag)
                           end
@@ -741,11 +779,5 @@ keys.clientbuttons = gears.table.join(
 -- Set keys
 root.keys(keys.globalkeys)
 root.buttons(keys.desktopbuttons)
-
-
-
-
-
-
 
 return keys

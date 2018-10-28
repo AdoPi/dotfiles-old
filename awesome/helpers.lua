@@ -31,7 +31,11 @@ helpers.rect = function()
 end
 
 function helpers.colorize_text(txt, fg)
-    return "<span foreground='" .. fg .."'>" .. txt .. "</span>"
+	if fg  then
+		return "<span foreground='" .. fg .."'>" .. txt .. "</span>"
+	else
+		return "<span>" .. txt .."</span>"
+	end
 end
 
 function helpers.client_menu_toggle()

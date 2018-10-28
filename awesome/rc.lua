@@ -1,11 +1,10 @@
 local theme_collection = {
-    "manta",        -- 1 -- 
     "fastrun"
   -- Add more themes here
 }
 
 -- Change this number to use a different theme
-local theme_name = theme_collection[2]
+local theme_name = theme_collection[1]
 
 --------------------------------------------------------------------------------
 
@@ -221,13 +220,13 @@ local function set_wallpaper(s)
         end
 
         -- Method 1: Built in function
-        --gears.wallpaper.maximized(wallpaper, s, true)
+        gears.wallpaper.maximized(wallpaper, s)
 
         -- Method 2: Set theme's wallpaper with feh
         --awful.spawn.with_shell("feh --bg-fill " .. wallpaper)
 
         -- Method 3: Set last wallpaper with feh
-        awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
+        --awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
     end
 end
 
@@ -236,17 +235,38 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 -- Tag Names
 local tagnames = beautiful.tagnames or { "1", "2", "3", "4","5","6","7","8","9","10"}
+-- Layouts
+local l = awful.layout.suit 
+local layouts = { l.spiral, l.floating, l.spiral, l.tile , l.max,
+l.max, l.floating, l.max, l.floating, l.floating}
+
+-- Prepare tags and layouts for each screen
+local screentags = {{names = {}, layouts = {}},{names={}, layouts = {}}}
+
+for k = 1, #tagnames do 
+	if k > 5 then
+		screentags[1].names[k-5] = tagnames[k]
+		screentags[1].layouts[k-5] = layouts[k]
+	else
+		screentags[2].names[k] = tagnames[k]
+		screentags[1].layouts[k] = layouts[k]
+	end
+end
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    -- Layouts
-    -- Each screen has its own tag table.
-    local l = awful.layout.suit 
-    local layouts = { l.spiral, l.spiral, l.spiral, l.tile , l.tile,
-        l.max, l.floating, l.max, l.floating, l.floating}
-    awful.tag(tagnames, s, layouts)
+    -- TODO concat layouts when single screen
+    local ls = { l.spiral, l.floating, l.spiral, l.tile , l.max}
+
+    -- Set different tags for each screen
+    if screen.count() > 1 then
+	    awful.tag(screentags[s.index].names, s, screentags[s.index].layouts)
+    else
+	    awful.tag(tagnames, s, layouts)
+    end
+
 end)
 
 -- {{{ Rules
