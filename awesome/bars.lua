@@ -38,6 +38,13 @@ textseparator.markup = helpers.colorize_text(textseparator.text, beautiful.separ
 -- Create padding
 pad = wibox.widget.textbox(" ")
 
+-- Create statusbar icon
+statusbar_icon = wibox.widget.textbox(" * ")
+statusbar_icon.font = "Kingdom Hearts 60"
+statusbar_icon.align = "center"
+statusbar_icon.valign = "top"
+statusbar_icon.markup = helpers.colorize_text(statusbar_icon.text, '#b0b0b0')
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -118,7 +125,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create a system tray widget
     s.systray = wibox.widget.systray()
-    s.systray.visible = false -- can be toggled by a keybind
+--    s.systray.visible = false -- can be toggled by a keybind
 
     -- Wibar detached - Method: Transparent useless bar
     -- Requires compositor
@@ -135,15 +142,15 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            --s.mylayoutbox,
+	    statusbar_icon,
+--            s.mylayoutbox,
             --mylauncher,
             s.mytaglist,
-            textseparator,
-            minimal_tasklist
+        --    minimal_tasklist
         },
         { -- Middle widgets
             layout = wibox.layout.fixed.horizontal,
-            --s.mypromptbox,
+            s.mypromptbox,
             --textseparator,
             --s.mytasklist,
             --minimal_tasklist
@@ -159,13 +166,13 @@ awful.screen.connect_for_each_screen(function(s)
 --            mykeyboardlayout,
             textseparator,
             s.systray,
---            minimal_tasklist,
+            minimal_tasklist,
             textseparator,
---            date_prefix,
---            mytextdate,
---            textseparator,
---            clock_prefix,
---            mytextclock,
+            date_prefix,
+	    mytextdate,
+            textseparator,
+            clock_prefix,
+            mytextclock,
 --            textseparator,
 --            desktop_mode_widget,
 --            pad,

@@ -271,6 +271,8 @@ theme.menu_width  = dpi(200)
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
+theme.statusbar_icon = icon_path.."crown.svg"
+theme.theme_icon = icon_path.."crown.svg"
 
 -- Define the images to load
 theme.titlebar_close_button_normal = tip .. "/close_normal.svg"

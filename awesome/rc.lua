@@ -245,10 +245,10 @@ local screentags = {{names = {}, layouts = {}},{names={}, layouts = {}}}
 
 for k = 1, #tagnames do 
 	if k > 5 then
-		screentags[1].names[k-5] = tagnames[k]
-		screentags[1].layouts[k-5] = layouts[k]
+		screentags[2].names[k-5] = tagnames[k]
+		screentags[2].layouts[k-5] = layouts[k]
 	else
-		screentags[2].names[k] = tagnames[k]
+		screentags[1].names[k] = tagnames[k]
 		screentags[1].layouts[k] = layouts[k]
 	end
 end
