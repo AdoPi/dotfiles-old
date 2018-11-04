@@ -213,7 +213,7 @@ keys.globalkeys = gears.table.join(
             end
         end,
           {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey }, "Tab", function() awful.spawn.with_shell("~/scr/Rofi/rofi_combi") end,
+    awful.key({ modkey }, "Tab", function() awful.spawn.with_shell("rofi -show window") end,
               {description = "window switcher", group = "launcher"}),
     --awful.key({ modkey,           }, "Tab",
         --function ()
@@ -341,7 +341,7 @@ keys.globalkeys = gears.table.join(
     -- Run program (d for dmenu ;)
     --awful.key({ modkey },            "d",     function () awful.screen.focused().mypromptbox:run() end,
               --{description = "run prompt", group = "launcher"}),
-    awful.key({ modkey }, "d", function() awful.spawn.with_shell("rofi -show combi -normal-window") end,
+    awful.key({ modkey }, "d", function() awful.spawn.with_shell("rofi -show run") end,
               {description = "rofi launcher", group = "launcher"}),
 
     -- Run lua code
@@ -655,7 +655,7 @@ local ntags = 10
 
 -- Dual screen helpers
 function getscreentag(tag)
-	return math.floor(tag/5) + 1
+	return math.floor(tag/(ntags/2+1)) + 1
 end
 
 function screentagindex(i)

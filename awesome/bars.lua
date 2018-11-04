@@ -108,7 +108,7 @@ awful.screen.connect_for_each_screen(function(s)
     if s.index == 1 then
 	    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
     else
-	    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.noempty, taglist_buttons)
+	    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
     end
     s.mytaglist.font = beautiful.font
 
@@ -164,15 +164,15 @@ awful.screen.connect_for_each_screen(function(s)
 --            textseparator,
 --            keyboardlayout_prefix,
 --            mykeyboardlayout,
-            textseparator,
+--   textseparator,
             s.systray,
-            minimal_tasklist,
             textseparator,
             date_prefix,
 	    mytextdate,
             textseparator,
             clock_prefix,
             mytextclock,
+--            minimal_tasklist,
 --            textseparator,
 --            desktop_mode_widget,
 --            pad,
@@ -185,8 +185,6 @@ awful.screen.connect_for_each_screen(function(s)
         if beautiful.wibar_alt_detached then
             s.useless_wibar_alt = awful.wibar({ position = beautiful.wibar_alt_position, screen = s, height = beautiful.screen_margin * 2, opacity = 0 })
             s.useless_wibar_alt:buttons(gears.table.join(
-                --TODO
-                --keys.desktopbuttons
             ))
         end
         s.mywibox_alt = awful.wibox({ position = beautiful.wibar_alt_position, screen = s, width = beautiful.wibar_alt_width, height = beautiful.wibar_alt_height, shape = helpers.rrect(beautiful.wibar_alt_border_radius)})

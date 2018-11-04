@@ -1,10 +1,4 @@
---  _               _ _ _
--- | |__   _____  _| (_) | _____
--- | '_ \ / _ \ \/ / | | |/ / _ \
--- | |_) | (_) >  <| | |   <  __/
--- |_.__/ \___/_/\_\_|_|_|\_\___|
---
--- A *box lookalike
+-- Theme(AdoPi)
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
@@ -30,7 +24,7 @@ theme.wallpaper = function(s)
     if s.index == 1 then
         return os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/wall.png";
     else 
-        return os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/wall2.jpg";
+        return os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/wall2.png";
     end
 end
 theme.font          = "monospace 12"
@@ -83,7 +77,7 @@ theme.screen_margin = dpi(5)
 -- Borders
 theme.border_width  = dpi(0)
 theme.border_normal = xcolor0
-theme.border_focus  = xcolor0
+theme.border_focus  = xcolor7
 -- Rounded corners
 theme.border_radius = dpi(6)
 
@@ -147,7 +141,8 @@ local symb = "  "
 --theme.tagnames = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  " }
 --theme.tagnames = { " i ", " ii ", " iii ", " iv ", " v ", " vi ", " vii ", " viii ", " ix ", " x " }
 --theme.tagnames = { " i ", " ii ", " iii ", " iv ", " v ", " vi ", " vii ", " viii ", " ix ", " x " }
-theme.tagnames = { " クラウド ", " ソラ ", " ティーダ ", " モーグリ ", " リク ", " vi ", " vii ", " viii ", " ix ", " x " }
+--theme.tagnames = { " クラウド ", " ソラ ", " ティーダ ", " モーグリ ", " リク ", " vi ", " vii ", " viii ", " ix ", " x " }
+theme.tagnames = { " 風 ", " 火 ", " 雨 ", " 月 ", " 水 ", " 光 ", " 空 ", " 木 ", " 日 ", " 川 " }
 
 -- Widget separator
 --theme.separator_text = " / "

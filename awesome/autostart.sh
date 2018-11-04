@@ -20,8 +20,8 @@ setxkbmap fr
 # Music
 run mpd ~/.config/mpd/mpd.conf
 
-# Load terminal colorscheme and settings
-#xrdb ~/.Xresources
+# Load colorscheme
+xrdb ~/.Xresources
 
 # Urxvt daemon
 #run urxvtd -q -o -f
@@ -44,6 +44,6 @@ run mpd ~/.config/mpd/mpd.conf
 # Kill redshift processes
 #pkill redshift
 
-
 # Scratchpad
 #scratchpad
+

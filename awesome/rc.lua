@@ -220,7 +220,11 @@ local function set_wallpaper(s)
         end
 
         -- Method 1: Built in function
-        gears.wallpaper.maximized(wallpaper, s)
+	if s.index == 1 then
+		gears.wallpaper.centered(wallpaper, s)
+	else
+		gears.wallpaper.fit(wallpaper, s)
+	end
 
         -- Method 2: Set theme's wallpaper with feh
         --awful.spawn.with_shell("feh --bg-fill " .. wallpaper)
@@ -608,7 +612,7 @@ beautiful.notification_shape = helpers.rrect(beautiful.notification_border_radiu
 beautiful.snap_shape = helpers.rrect(beautiful.border_radius * 2)
 beautiful.taglist_shape = helpers.rrect(beautiful.taglist_item_roundness)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus; end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- Scratchpad gets minimized when it loses focus
