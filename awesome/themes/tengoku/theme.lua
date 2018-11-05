@@ -5,7 +5,7 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
-local theme_name = "fastrun"
+local theme_name = "tengoku"
 local icon_path = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/icons/"
 local titlebar_icon_path = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/titlebar/"
 local tip = titlebar_icon_path --alias to save time
@@ -27,7 +27,7 @@ theme.wallpaper = function(s)
         return os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/wall2.png";
     end
 end
-theme.font          = "monospace 12"
+theme.font          = "monospace 14"
 --theme.font          = "sans-serif 12"
 
 local xbackground = xrdb.background or	"#1E2541"
@@ -92,12 +92,12 @@ theme.titlebar_title_align = "center"
 theme.titlebar_position = "top"
 -- Use 4 titlebars around the window to imitate borders
 theme.titlebars_imitate_borders = false
-theme.titlebar_bg = xcolor7
+--theme.titlebar_bg = xcolor7
+theme.titlebar_bg = xcolor0
 -- theme.titlebar_bg_focus = xcolor5
 -- theme.titlebar_bg_normal = xcolor13
 theme.titlebar_fg_focus = xcolor7
 theme.titlebar_fg_normal = xcolor15
---theme.titlebar_fg = xcolor7
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -152,9 +152,10 @@ theme.tagnames = { " 風 ", " 火 ", " 雨 ", " 月 ", " 水 ", " 光 ", " 空 "
 --theme.separator_text = " | "
 --theme.separator_text = " "
 --theme.separator_text = " :: "
---theme.separator_text = " ⠐ "
+theme.separator_text = " ⠐ "
 --theme.separator_text = " • "
-theme.separator_text = " •• "
+--theme.separator_text = " •• "
+--theme.separator_text = "  "
 --theme.separator_text = "  "
 --theme.separator_text = "  "
 theme.separator_fg = xcolor8
@@ -266,8 +267,10 @@ theme.menu_width  = dpi(200)
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
-theme.statusbar_icon = icon_path.."crown.svg"
-theme.theme_icon = icon_path.."crown.svg"
+
+--theme.statusbar_icon = icon_path.."kh_crown.svg"
+--theme.theme_icon = icon_path.."kh_crown.svg"
+--theme.titlebar_icon_kh = icon_path.."kh_key.svg"
 
 -- Define the images to load
 theme.titlebar_close_button_normal = tip .. "/close_normal.svg"

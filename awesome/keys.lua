@@ -521,6 +521,50 @@ keys.clientkeys = gears.table.join(
         -- Relative move
         c:relative_move(0, -20, 0, 0)
     end),
+    -- Toggle transparency
+    awful.key({ modkey,           }, "i",      
+    function (c) 
+	    if c.opacity < 1 or c.opacity == nil then
+		c.opacity = 1
+	    else
+		c.opacity = 0.8 -- TODO remove hardcoded number
+	    end
+    end,
+    {description = "toggle transparency", group = "client"}),
+    -- Toggle transparency for all clients
+    awful.key({ modkey, shiftkey       }, "i",      
+    function (c) 
+            local clients = awful.screen.focused().clients
+            for _, c in pairs(clients) do
+		    if c.opacity < 1 or c.opacity == nil then
+			    c.opacity = 1
+		    else
+			    c.opacity = 0.8 -- TODO remove hardcoded number
+		    end
+	    end
+    end,
+    {description = "toggle transparency", group = "client"}),
+    -- Decrease transparency
+    awful.key({ modkey,ctrlkey           }, "i",      
+    function (c) 
+	    if  c.opacity == nil then
+		c.opacity = 1
+	    end
+	    c.opacity = c.opacity - 0.1
+    end,
+    {description = "decrease transparency", group = "client"}),
+    -- Decrease transparency for all clients
+    awful.key({ modkey,ctrlkey,shiftkey           }, "i",
+    function (c) 
+	    local clients = awful.screen.focused().clients
+	    for _, c in pairs(clients) do
+		    if  c.opacity == nil then
+			    c.opacity = 1
+		    end
+		    c.opacity = c.opacity - 0.1
+	    end
+    end,
+    {description = "decrease transparency", group = "client"}),
     -- Toggle titlebar (for focused client only)
     awful.key({ modkey,           }, "b",
         function (c)
@@ -530,6 +574,7 @@ keys.clientkeys = gears.table.join(
             end
         end,
         {description = "toggle titlebar", group = "client"}),
+
     -- Toggle titlebar (for all visible clients in selected tag)
     awful.key({ modkey, shiftkey }, "b",
         function (c)
@@ -771,6 +816,7 @@ keys.clientbuttons = gears.table.join(
 --    awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 1, function(c) awful.mouse.client.move(c); c.floating = true end),
     awful.button({ modkey }, 3, function(c)
+	c.floating = true
         awful.mouse.resize(c, nil, {jump_to_corner=true})
     end)
 )

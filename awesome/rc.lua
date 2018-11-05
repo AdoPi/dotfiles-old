@@ -1,5 +1,5 @@
 local theme_collection = {
-    "fastrun"
+    "tengoku"
   -- Add more themes here
 }
 

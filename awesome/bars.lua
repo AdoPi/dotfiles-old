@@ -43,7 +43,7 @@ statusbar_icon = wibox.widget.textbox(" * ")
 statusbar_icon.font = "Kingdom Hearts 60"
 statusbar_icon.align = "center"
 statusbar_icon.valign = "top"
-statusbar_icon.markup = helpers.colorize_text(statusbar_icon.text, '#b0b0b0')
+statusbar_icon.markup = helpers.colorize_text(statusbar_icon.text, beautiful.bg_normal)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -93,6 +93,15 @@ local tasklist_buttons = gears.table.join(
 )
 -- }}}
 
+
+local barcolor  = gears.color({
+    type  = "linear",
+    from  = { 32, 0 },
+    to    = { 32, 32 },
+    stops = { {0, beautiful.fg_focus}, {0.25, beautiful.fg_focus}, {1, beautiful.fg_focus} }
+})
+
+
 awful.screen.connect_for_each_screen(function(s)
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt({prompt = " Run: ", fg = beautiful.prompt_fg})
@@ -106,7 +115,7 @@ awful.screen.connect_for_each_screen(function(s)
                awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
     if s.index == 1 then
-	    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+	    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons) --,  {bg_focus = '#91BEBB', border_radius = 0})
     else
 	    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
     end
@@ -135,7 +144,9 @@ awful.screen.connect_for_each_screen(function(s)
         --s.useless_wibar:buttons(keys.desktopbuttons)
     end
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = beautiful.wibar_position, screen = s, width = beautiful.screen_wibar_width(s), height = beautiful.screen_wibar_height(s), shape = helpers.rrect(beautiful.wibar_border_radius), opacity = beautiful.wibar_opacity})
+    s.mywibox = awful.wibar({ position = beautiful.wibar_position, screen = s, width = beautiful.screen_wibar_width(s), height = beautiful.screen_wibar_height(s), 
+   -- shape = helpers.rrect(beautiful.wibar_border_radius),
+     opacity = beautiful.wibar_opacity})
     -- Wibar items
     -- Add or remove widgets here
     s.mywibox:setup {
@@ -165,13 +176,13 @@ awful.screen.connect_for_each_screen(function(s)
 --            keyboardlayout_prefix,
 --            mykeyboardlayout,
 --   textseparator,
-            s.systray,
-            textseparator,
             date_prefix,
 	    mytextdate,
             textseparator,
             clock_prefix,
             mytextclock,
+            textseparator,
+            s.systray,
 --            minimal_tasklist,
 --            textseparator,
 --            desktop_mode_widget,
@@ -230,7 +241,7 @@ awful.screen.connect_for_each_screen(function(s)
                 clock_prefix,
                 mytextclock,
                 textseparator,
-                desktop_mode_widget,
+        --        desktop_mode_widget,
                 pad
             },
         }
