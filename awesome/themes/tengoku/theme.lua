@@ -262,6 +262,9 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 theme.menu_submenu_icon = icon_path.."submenu.svg"
 theme.menu_height = dpi(25)
 theme.menu_width  = dpi(200)
+theme.menu_bg_normal = xcolor12
+theme.menu_bg_focus = xcolor14
+theme.menu_fg_focus = xcolor8
 
 -- You can add as many variables as
 -- you wish and access them by using

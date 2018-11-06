@@ -43,7 +43,7 @@ statusbar_icon = wibox.widget.textbox(" * ")
 statusbar_icon.font = "Kingdom Hearts 60"
 statusbar_icon.align = "center"
 statusbar_icon.valign = "top"
-statusbar_icon.markup = helpers.colorize_text(statusbar_icon.text, beautiful.bg_normal)
+statusbar_icon.markup = helpers.colorize_text(statusbar_icon.text, beautiful.fg_urgent)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
