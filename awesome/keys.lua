@@ -247,7 +247,7 @@ keys.globalkeys = gears.table.join(
         if current_layout == "floating" or c.floating == true then
             c:relative_move(  0,  0, -20, 0)
         else
-            awful.tag.incmwfact(-0.05)
+            awful.tag.incmwfact(-0.05) 
         end
     end,
       {description = "decrease master width factor", group = "layout"}),

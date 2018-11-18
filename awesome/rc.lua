@@ -518,7 +518,7 @@ awful.rules.rules = {
           --"mpvtube",
         --},
         
-     }, properties = { screen = 1, tag = awful.screen.focused().tags[10] },
+     }, properties = { screen = 1, tag = awful.screen.focused().tags[5] },
       callback = function (c)
         awful.placement.centered(c,{honor_workarea=true})
         gears.timer.delayed_call(function()
@@ -560,12 +560,12 @@ client.connect_signal("manage", function (c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
---client.connect_signal("mouse::enter", function(c)
---    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
---        and awful.client.focus.filter(c) then
---        client.focus = c
---    end
---end)
+client.connect_signal("mouse::enter", function(c)
+    if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+        and awful.client.focus.filter(c) then
+        client.focus = c
+    end
+end)
 
 -- Rounded corners
 if beautiful.border_radius ~= 0 then
@@ -612,8 +612,15 @@ beautiful.notification_shape = helpers.rrect(beautiful.notification_border_radiu
 beautiful.snap_shape = helpers.rrect(beautiful.border_radius * 2)
 beautiful.taglist_shape = helpers.rrect(beautiful.taglist_item_roundness)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus; end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c) 
+	c.border_color = beautiful.border_focus
+	c.border_width = beautiful.border_focus_width
+end)
+
+client.connect_signal("unfocus", function(c) 
+	c.border_color = beautiful.border_normal 
+	c.border_width = beautiful.border_width
+end)
 
 -- Scratchpad gets minimized when it loses focus
 --client.connect_signal("unfocus", function(c) 

@@ -75,9 +75,11 @@ theme.useless_gap   = dpi(15)
 theme.screen_margin = dpi(5)
 
 -- Borders
-theme.border_width  = dpi(0)
-theme.border_normal = xcolor0
-theme.border_focus  = xcolor7
+theme.border_width  = dpi(3)
+theme.border_focus_width  = dpi(3)
+theme.border_normal = '#b2b2b2ff'
+--theme.border_normal = '#ffffff00' -- TODO(Adonis) do it transparent
+theme.border_focus  = xcolor0
 -- Rounded corners
 theme.border_radius = dpi(6)
 
